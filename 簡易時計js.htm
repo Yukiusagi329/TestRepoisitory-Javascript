@@ -1,0 +1,42 @@
+<HTML>
+	<HEAD>
+		<TITLE>Disp time</TITLE>
+			<SCRIPT LANGUAGE="JavaScript">
+			function disptime()
+			{
+	  			setTimeout("disptime()",1000);
+	  			var day=new Date() ;
+	  			var hh=day.getHours() ;
+	  			var mm=day.getMinutes() ;
+	  			var ss=day.getSeconds() ;
+	  			if (hh<10) {hh=" "+hh}
+	  			if (mm<10) {mm=" "+mm}
+	  			if (ss<10) {ss=" "+ss}
+	  			document.forms[0].elements[1].value=hh+":"+mm+":"+ss ;
+			}
+			function dispdate()
+			{
+	  			var day=new Date() ;
+	  			var yy=day.getYear() ;
+	  			var mm=day.getMonth() + 1 ;
+	  			var dd=day.getDate() ;
+	  			if (yy<10) {yy=" "+yy}
+	  			if (mm<10) {mm=" "+mm}
+	  			if (dd<10) {dd=" "+dd}
+	  			document.forms[0].elements[0].value=yy+"-"+mm+"-"+dd ;
+			}
+			</SCRIPT>
+	</HEAD>
+	<BODY bgcolor="#111111" text="#000000">
+		<center>
+		<form method="post">
+			<input size=12 name="dispdate">  
+			<input size=12 name="disptime">
+		</form>
+		<SCRIPT>
+			dispdate();
+			disptime();
+		</SCRIPT>
+		</center>
+	</BODY>
+</HTML>
