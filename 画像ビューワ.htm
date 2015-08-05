@@ -1,0 +1,81 @@
+<html>
+<head>
+<title>画像ビューワ</title>
+
+<style>
+#bd{
+	background-color:#ffffff;
+}
+
+#view{
+	position:absolute;
+	top:100px;
+	left:100px;
+	width:500px;
+	height:350px;
+	padding:1em;
+	background-color:#ffffff;
+	text-align:center;
+	display:none;
+}
+</style>
+
+<script>
+function img_v(X){
+
+document.getElementByld("bd").style.backgroundColor = "#404040";
+
+document.getElementByld("mask").style.opacity = "0.2";
+
+document.getElementByld("tdl").style.filter = "alpha(opacity=20)";
+
+var LB ='<img src="test0' + X + '.jpg" width="400">';
+LB + = '<br><button onClick="back2main()">閉じます</button'>;
+
+document.getElementByld("view").innerHTML = LB;
+
+var vleft = (document.body.clientWidth/2 - 500/2);
+var vtop = (document.body.clientHeight/2 - 300/2);
+
+if(vtop<0){
+	vtop = 150;
+}
+
+document.getElementByld("view").style.borderRadius = "10px";
+document.getElementByld("view").style.boxShadow = "10px 10px 10px rgba(0,0,0,1)";
+document.getElementByld("view").style.display = "block";
+}
+
+function back2main(){
+
+document.getElementByld("view").style.display = "none";
+document.getElementByld("bd").style.backgroundColor = "#ffffff";
+document.getElementByld("mask").style.opacity = "1.0";
+}
+
+</script>
+
+</head>
+<body id="bd">
+<div id="mask">
+<p id="cont">画像をクリックすると拡大して表示します</p>
+
+<table id="tdl">
+<tr>
+<td>
+<img src="twittergithub2.png" width="200" onClick="imag_v(1);">
+</td>
+<td>
+<img src="twittergithub2.png" width="200" onClick="imag_v(2);">
+</td>
+<td>
+<img src="twittergithub2.png" width="200" onClick="imag_v(3);">
+</td>
+</tr>
+</table>
+</div>
+
+<div id="view"></div>
+
+</body>
+</html>
