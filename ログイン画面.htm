@@ -1,0 +1,45 @@
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<title>サンプル</title>
+<script type="text/javascript">
+<!--
+function secret() {
+	if (confirm("よろしいですか？")) {
+		var id = document.form1.id.value;
+		var passwd = document.form1.passwd.value;
+		var pass = unescape("%68%69%6D%69%74%75");
+
+		if (id.length > 3 && pass == passwd) {
+			location.replace("./画像ビューワ.htm");
+		}
+		else {
+			alert("ID パスワードを確認してください。");
+		}
+	}
+}
+// -->
+</script>
+</head>
+<body onload="document.form1.id.focus();">
+<form action="#" name="form1">
+<table>
+<tr>
+<td align="right">ID (<u>U</u>)</td>
+<td><input type="text" name="id" value="" maxlength="12" accesskey="u"></td>
+</tr>
+<tr>
+<td>パスワード (<u>P</u>)</td>
+<td><input type="password" name="passwd" maxlength="8" accesskey="p" onkeydown="if (event.keyCode == 13) secret();"></td>
+</tr>
+<tr>
+<td colspan="2" align="right">
+<input type="button" value="認証" onclick="secret();">
+<input type="reset" value="取り消し">
+</td>
+</tr>
+</table>
+</form>
+</body>
+</html>
