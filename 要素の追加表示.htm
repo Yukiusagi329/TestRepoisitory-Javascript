@@ -1,0 +1,60 @@
+<html lang="ja">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<title>要素の追加表示</title>
+
+<script type="text/javascript">
+<!--
+	function appendTest1() {
+		if (!document.createElement || !document.getElementById) return;
+	
+		var ele = document.createElement("img");
+		ele.setAttribute("src", "./twittergithub2.png");
+		ele.setAttribute("alt", "写真");			
+	
+		document.getElementById("pic").appendChild(ele);
+	}
+	function appendTest2() {
+		if (!document.createElement || !document.getElementById) return;
+	
+		var ele = document.createElement("a");
+		ele.href = "./画像描写js.htm";
+		var str = document.createTextNode("[戻る]");
+		ele.appendChild(str);
+	
+		document.getElementById("link").appendChild(ele);
+	}
+	function appendTest3() {
+		if (!document.createElement) return;
+	
+		var ele = document.createElement("option");
+		ele.value = "ddd";
+		var str = document.createTextNode("test*");
+		ele.appendChild(str);
+	
+		document.form1.select1.appendChild(ele);
+	}
+// -->
+</script>
+
+</head>
+
+<body>
+<p id="pic">画像を追加をクリックすると画像が表示される</p>
+<a href="javascript:appendTest1();">画像を追加</a>
+
+<p id="link">リンクを追加をクリックすると[戻る]ボタンが追加表示される</p>
+<a href="javascript:appendTest2();">リンクを追加</a>
+
+	<form action="#" name="form1">
+		<select name="select1" size="5" onchange="alert(this.value);">
+			<option value="aaa">test1
+			<option value="bbb">test2
+			<option value="ccc">test3
+		</select>
+	<input type="button" value="追加" onclick="appendTest3();">
+	</form>
+</body>
+</html>
