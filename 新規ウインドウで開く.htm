@@ -1,0 +1,28 @@
+<script type="text/javascript">
+<!--
+document.onclick = function(e) {
+	var url, ie;
+	if (document.all) {
+		url = window.event.srcElement.href;
+		ie = (!window.opera) ? 1 : 0;
+	}
+	else if (document.getElementById && e.which == 1) {
+		url = e.target.href || e.target.parentNode.href;
+	}
+
+	if (url && url.match(/^(http?|ftp):\/\//)) {
+		if (ie && url.match(/[^\x21-\x7E]/)) {
+			if (!window.createPopup) {
+				window.event.srcElement.target = "_blank";
+				return true;
+			}
+			url = escape(url);
+			url = decodeURIComponent(url);
+			url = encodeURI(url);
+		}
+		window.open(url);
+		return false;
+	}
+}
+// -->
+</script>
