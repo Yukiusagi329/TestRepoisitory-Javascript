@@ -1,0 +1,20 @@
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<title>新規ページに文字を書き込む</title>
+<script type="text/javascript">
+<!--
+function newpage() {
+	document.open();
+	document.write("こんにちは<br>\n");
+	document.writeln("<a href='javascript:history.back();'>戻る<\/a>");
+	document.close();
+}
+// -->
+</script>
+</head>
+<body>
+<a href="javascript:newpage();">新しいページ</a>
+</body>
+</html>
