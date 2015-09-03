@@ -1,0 +1,58 @@
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>ロード中の文字表示</title>
+<style type="text/css">
+<!--
+#loading {
+	position: absolute;
+	top: 35%;
+	left: 45%;
+	font-style: italic;
+	font-family: Verdana;
+}
+-->
+</style>
+<script type="text/javascript">
+<!--
+document.write('<style type="text/css">#doc { visibility: hidden; }<\/style>');
+document.write('<div id="loading">ページを読み込んでいます...<\/div>');
+
+var i = 0;
+var ele = document.getElementById("loading");
+var str = ele.firstChild.data;
+
+function char_loop(ele, str) {
+	ele.innerHTML = str.substring(0, i++ % str.length + 1);
+}
+setInterval("char_loop(ele, str);", 100);
+
+function appendTest1() {
+		if (!document.createElement || !document.getElementById) return;
+	
+		var ele = document.createElement("img");
+		ele.setAttribute("src", "./twittergithub2.png");
+		ele.setAttribute("alt", "写真");			
+	
+		document.getElementById("pic").appendChild(ele);
+	}
+
+window.onload = function() {
+	ele.style.display = "none";
+	document.getElementById("doc").style.visibility = "visible";
+}
+
+// -->
+</script>
+</head>
+<body>
+<div id="doc">
+
+<p id="pic">画像を追加をクリックすると画像が表示される</p>
+<a href="javascript:appendTest1();">画像を追加</a>
+
+</div>
+</body>
+</html>
