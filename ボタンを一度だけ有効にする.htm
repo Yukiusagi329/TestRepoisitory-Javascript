@@ -1,0 +1,60 @@
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<title>ボタンを一度だけ有効にする</title>
+<script type="text/javascript">
+<!--
+function str_check(obj) {
+	if (!obj.name.value) {
+		alert("お名前を記入してください。");
+		obj.name.focus();
+	}
+	else if (!obj.email.value) {
+		alert("メールアドレスを記入してください。");
+		obj.email.focus();
+	}
+	else if (!obj.email.value.match(/^[-\.\w]+\@[-\.\w]+\.[-\.\w]+$/)) {
+		alert("メールアドレスの形式が不正です。");
+		obj.email.focus();
+	}
+	else if (!obj.message.value) {
+		alert("メッセージを記入してください。");
+		obj.message.focus();
+	}
+	else {
+		obj.elements[obj.elements.length - 2].disabled = true;
+		obj.submit();
+	}
+}
+function init(obj) {
+	obj.elements[obj.elements.length - 2].disabled = false;
+	if (confirm("入力された内容を全てクリアしてもよろしいですか？")) obj.reset();
+}
+// -->
+</script>
+</head>
+<body>
+<form action="./mail.cgi" method="POST">
+<table>
+<tr>
+<td>お名前:</td>
+<td><input type="text" name="name" value="" size="40"></td>
+</tr>
+<tr>
+<td>メールアドレス:</td>
+<td><input type="text" name="email" value="" size="40" style="ime-mode: disabled;"></td>
+</tr>
+<tr>
+<td valign="top">メッセージ:</td>
+<td><textarea name="message" cols="50" rows="5"></textarea></td>
+</tr>
+<tr>
+<td colspan="2" align="right">
+<input type="submit" value="送信" onclick="str_check(this.form); return false;">
+<input type="reset" value="取り消し" onclick="init(this.form); return false;"></td>
+</tr>
+</table>
+</form>
+</body>
+</html>

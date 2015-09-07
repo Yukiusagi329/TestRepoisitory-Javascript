@@ -1,0 +1,38 @@
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<title>表示されている文字を入力時に削除する</title>
+<script type="text/javascript">
+<!--
+window.onload = function() {
+	var obj = document.forms;
+	if (!obj) return;
+	for (var i = 0; i < obj.length; i++) {
+		var ele = obj[i].elements;
+		for (var j = 0; j < ele.length; j++) {
+			if (ele[j].type != "text") continue;
+			ele[j].onfocus = value_clear;
+			ele[j].onblur = value_default;
+		}
+	}
+}
+function value_clear() {
+	if (this.value == this.defaultValue) this.value = "";
+}
+function value_default() {
+	if (!this.value) this.value = this.defaultValue;
+}
+// -->
+</script>
+</head>
+<body>
+<form action="#">
+<input type="text" name="text1" value="入力してください">
+<input type="text" name="text2" value="記入してください">
+<input type="text" name="text3" value="">
+<input type="reset">
+<input type="submit" value="送信">
+</form>
+</body>
+</html>

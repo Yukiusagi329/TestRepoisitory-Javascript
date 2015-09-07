@@ -1,0 +1,87 @@
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<title>検索サイトを選択して検索</title>
+<script type="text/javascript">
+<!--
+var site = new Array();
+site[0] = ["Excite", "http://www.excite.co.jp/search.gw", "search",
+		["target", "combined"], ["c", "web"], ["lk", "excite_jp"], ["lang", "jp"]];
+site[1] = ["Fresheye", "http://search.fresheye.com/", "kw"];
+site[2] = ["Goo", "http://search.goo.ne.jp/web.jsp", "MT",
+		["from", "USR"], ["IE", "sjis"]];
+site[3] = ["Google", "http://www.google.com/search", "q",
+		["hl", "ja"], ["ie", "Shift_JIS"]];
+site[4] = ["Infoseek", "http://www.infoseek.co.jp/Titles", "qt",
+		["sv", "JP"], ["lk", "noframes"], ["rt", "JG"], ["svx", "500"]];
+site[5] = ["Yahoo", "http://search.yahoo.co.jp/bin/search", "p"];
+
+window.onload = function() {
+	if (!document.createElement) return;
+	if (document.all && !window.clipboardData && !window.opera) return;
+
+	// 検索サイトのリストを生成
+	var select = document.createElement("select");
+	select.id = "addlist";
+	for (var i = 0; i < site.length; i++) {
+		var opt = document.createElement("option");
+		opt.value = i;
+		var str = document.createTextNode(site[i][0]);
+		opt.appendChild(str);
+		select.appendChild(opt);
+	}
+	// デフォルトで選択状態にする場合はその配列番号を option[n] に指定
+	// select.options[3].selected = true;
+
+	// 既存の検索フォームにこのドロップダウンを追加
+	var obj = document.forms[0];
+	obj.elements[obj.elements.length - 1].value = "検索";
+	obj.insertBefore(select, obj.elements[1]);
+
+	// フォームが送信された時に selectSearch() を呼び出す
+	obj.onsubmit = selectSearch;
+}
+function selectSearch() {
+	var str = document.forms[0].p.value;		// 入力された検索文字
+	var num = document.forms[0].addlist.value;	// 選択されたリストの番号
+
+	// 選択された検索サイトのフォーム生成（送信先の指定）
+	var setform = document.createElement("form");
+	setform.action = site[num][1];
+	setform.method = "GET";
+	// setform.target = "_blank";		// 検索結果を新しいウィンドウに表示する場合に追加
+
+	// 検索文字クエリ
+	var query = document.createElement("input");
+	query.type = "hidden";
+	query.name = site[num][2];
+	query.value = str;
+	setform.appendChild(query);
+
+	// 検索文字以外のクエリ
+	if (site[num].length > 3) {
+		for (var i = 3; i < site[num].length; i++) {
+			var extra = document.createElement("input");
+			extra.type = "hidden";
+			extra.name = site[num][i][0];
+			extra.value = site[num][i][1];
+			setform.appendChild(extra);
+		}
+	}
+
+	// 生成したフォームを文末に追加してそのフォームを送信
+	document.body.appendChild(setform);
+	setform.submit();			// document.forms[document.forms.length - 1].submit();
+	return false;
+}
+// -->
+</script>
+</head>
+<body>
+<form action="http://search.yahoo.co.jp/bin/search" method="GET">
+<input type="text" name="p" value="" size="30">
+<input type="submit" value="Yahoo! 検索">
+</form>
+</body>
+</html>
