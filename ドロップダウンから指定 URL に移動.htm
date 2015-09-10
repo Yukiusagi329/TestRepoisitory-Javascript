@@ -1,0 +1,26 @@
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<title>ドロップダウンから指定 URL に移動（別ウィンドウ）</title>
+<script type="text/javascript">
+<!--
+function url_window() {
+	var num = document.form3.select1.selectedIndex;
+	var url = document.form3.select1.options[num].value;
+	window.open(url, "new");
+}
+// -->
+</script>
+</head>
+<body>
+<form action="#" name="form3">
+<select name="select1">
+<option value="#">えらんでね
+<option value="../ログイン画面.htm">ログイン画面
+<option value="../画像ビューワ.htm">画像ビューワ
+</select>
+<input type="button" value="移動" onclick="url_window();">
+</form>
+</body>
+</html>
