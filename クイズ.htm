@@ -1,0 +1,39 @@
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<title>クイズ</title>
+<script type="text/javascript">
+<!--
+
+   function test(doko){
+	errors="答えを選択して下さい。";
+	dore=-1;
+	for(i=0; i<3; i++)if(document.forms[doko].elements[i].checked==true)dore=document.forms[doko].elements[i].value;
+	if(dore==-1)document.forms[doko].kekka.value=errors;
+	else document.forms[doko].kekka.value=dore;
+	}
+
+//-->
+</script>
+</head>
+<body>
+
+質問1：私の今の状態を当ててください。
+<form name="form1">
+  <input type="radio" name="q1" value="正解">私はいま眠い<br>
+  <input type="radio" name="q1" value="はずれ">私はいまお腹が空いている<br>
+  <input type="radio" name="q1" value="はずれ">私はいまお金がない<br>
+  <textarea name="kekka" cols="40" rows="5" wrap="soft"></textarea><br>
+  <input type="button" value="結果" onClick="test('form1');">
+</form>
+<br>
+質問2：明日は晴れるでしょうか？
+<form name="form2">
+  <input type="radio" name="q1" value="明日にならないとわかりません">はい<br>
+  <input type="radio" name="q1" value="明日にならないとわかりません">いいえ<br>
+  <input type="radio" name="q1" value="正解">どちらとも言えない<br>
+  <textarea name="kekka" cols="40" rows="5" wrap="soft"></textarea><br>
+  <input type="button" value="結果" onClick="test('form2');">
+</form>
+</body></html>

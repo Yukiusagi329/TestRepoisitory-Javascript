@@ -1,0 +1,36 @@
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<title>おみくじ</title>
+<script type="text/javascript">
+<!--
+    function omikuji()
+	{a=Math.floor(Math.random()*10);
+	 bun=new Array();
+	 bun[0]="大吉！絶好調です。何もかも貴方の思い通り！";
+	 bun[1]="中吉！何か良いことがありそう。";
+	 bun[2]="吉。穏やかな日々が過ごせそうです。";
+	 bun[3]="小吉。今日はゆっくりと過ごしましょう。";
+	 bun[4]="凶…忘れ物に注意！";
+	 bun[5]="大凶…ミスを連発しそうです。";
+	 bun[6]="中吉。懐かしい人に出会えそう。";
+	 bun[7]="小吉。残り物には福がある。";
+	 bun[8]="凶…こんな日は大人しくしていよう。";
+	 bun[9]="吉。懐かしい人に連絡を取ってみよう。";
+
+	 document.form1.text1.value=bun[a];
+	}
+//-->
+</script>
+</head>
+<body>
+
+<div align="center">
+<form name="form1">
+  <textarea name="text1" rows="5" cols="35" wrap="soft"></textarea><br>
+  <input type="button" value="御神籤" onClick="omikuji();">
+  <input type="reset" value="RESET">
+</form>
+</div>
+</body></html>
