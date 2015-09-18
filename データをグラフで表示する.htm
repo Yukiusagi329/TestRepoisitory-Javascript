@@ -1,0 +1,144 @@
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<title>データをグラフで表示する</title>
+
+<script language="JavaScript" type="text/javascript">
+<!--
+
+	data_name=new Array();
+	data_kazu=new Array();
+
+	//********** データ *********
+	//データ1
+	data_name[0]="シャツ";
+	data_kazu[0]=10000;
+
+	//データ2
+	data_name[1]="スーツ";
+	data_kazu[1]=39999;
+
+	//データ3
+	data_name[2]="帽子";
+	data_kazu[2]=4568;
+
+	//データ4
+	data_name[3]="カットソー";
+	data_kazu[3]=25789;
+
+	//データ5
+	data_name[4]="スカート";
+	data_kazu[4]=234568;
+
+	//データ6
+	data_name[5]="ジャケット";
+	data_kazu[5]=51248;
+
+	//データ7
+	data_name[6]="化粧品";
+	data_kazu[6]=9870;
+
+
+	//********** 配置指定 *********
+	//center , right , leftのいずれかを指定
+
+	//結果画面全体の配置
+	table_align="left";
+
+	//項目の配置
+	th_align="center";
+
+	//データの配置
+	td_align="right";
+
+
+	//********** スタイル *********
+	//ウィンドウのタイトルを指定
+	win_title='結果画面';
+
+	//ウィンドウの背景色を指定
+	bg_color='#ffffff';
+
+	//ウィンドウの文字色を指定
+	text_color='#000000';
+
+	//ウィンドウのリンク色を指定
+	link_color='#ff0000';
+
+	//ウィンドウのvlink色を指定
+	vlink_color='#00ff00';
+
+	//ウィンドウのalink色を指定
+	alink_color='#0000ff';
+
+	//テーブルの横幅を指定
+	table_w='400';
+
+	//テーブルの背景色を指定
+	table_bgcolor='#ffffff';
+
+	//テーブルのthの背景色を指定
+	th_bgcolor='#ffd9b7';
+
+	//テーブルのthの文字色を指定
+	th_textcolor='#622f00';
+
+	//テーブルのthの文字サイズを指定
+	th_textsize='3';
+
+	//テーブルのtdの背景色を指定
+	td_bgcolor='#fff795';
+
+	//テーブルのtdの文字色を指定
+	td_textcolor='#645c00';
+
+	//テーブルのtdの文字サイズを指定
+	td_textsize='3';
+
+	//ウィンドウの戻るボタン名を指定
+	//画像ボタンを使用したい場合は、imgタグを記入
+	button='戻る';
+
+
+	kekka=0;
+	function syuukei2()
+		{
+		var mojis='';
+		kekka=0;
+		for(i=0; i<data_kazu.length; i++)kekka+=data_kazu[i];
+
+		mojis='<html>\n<head>\n<title>'+win_title+'<\/title>\n<\/head>\n';
+		mojis+='<body text="'+text_color+'" bgcolor="'+bg_color+'" link="'+link_color+'" vlink="'+vlink_color+'" alink="'+alink_color+'">\n';
+		mojis+='<div align="'+table_align+'">';
+		mojis+='<table width="'+table_w+'" border="1" bgcolor="'+table_bgcolor+'">\n';
+		for(i=0; i<data_kazu.length; i++)
+			{
+			mojis+='<tr>\n<th bgcolor="'+th_bgcolor+'" align="'+th_align+'"><font size="'+th_textsize+'" color="'+th_textcolor+'">'+data_name[i]+'<\/font><\/th>\n';
+			mojis+='<td bgcolor="'+td_bgcolor+'" align="'+td_align+'"><font size="'+td_textsize+'" color="'+td_textcolor+'">'+data_kazu[i]+'<\/font><\/td>\n<\/tr>\n';
+			}
+		mojis+='<tr>\n<th bgcolor="'+th_bgcolor+'"><font size="'+th_textsize+'" color="'+th_textcolor+'">合計<\/font><\/th>\n';
+		mojis+='<th bgcolor="'+th_bgcolor+'" align="right"><font size="'+th_textsize+'" color="'+th_textcolor+'">'+kekka+'<\/font><\/th>\n<\/tr>\n';
+		mojis+='<\/table>\n<br clear="all"><a href="javascript:history.back();">'+button+'<\/a><\/font><\/div><\/body><\/html>';
+
+		delete kekka;
+		with(document)
+			{
+			open();
+			write(mojis);
+			close();
+			}
+		}
+
+//-->
+</script>
+
+</head>
+
+<body>
+
+<form>
+<input type="button" value="Click!" onClick="syuukei2();">
+</form>
+
+</body></html>
