@@ -1,0 +1,160 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<title>ツリー構造リストサンプル作成</title>
+<script language="JavaScript">
+<!--//Copyright (C) WEST MiRa http://www.west-mira.jp
+
+	kazu=4;
+	taihi=new Array();
+	function hyouji(doko){
+	if(document.layers)
+		{kazu=document.layers.length/2;
+		lay_name=document.layers["lay"+doko];
+		tit_name=document.layers["title"+doko];
+		if(lay_name.visibility == 'show')
+			{lay_name.visibility='hidden';
+			dotti=1;
+			 }
+		 else {lay_name.visibility='show';
+			tate=tit_name.pageY+tit_name.clip.height;
+			yoko=tit_name.pageX;
+			lay_name.top=tate;
+			lay_name.left=yoko;
+			dotti=0;
+			}
+
+		if(doko < kazu-1)
+			{
+			for(i=doko+1; i<kazu; i++){
+				tate=document.layers["lay"+doko].clip.height;
+				if(dotti == 1)
+					document.layers["title"+i].moveBy(0,-tate);
+				else 
+					document.layers["title"+i].moveBy(0,tate);
+				if(document.layers["lay"+i].visibility=='show')
+					{
+					if(dotti == 1)
+						document.layers["lay"+i].moveBy(0,-tate);
+					else 
+						document.layers["lay"+i].moveBy(0,tate);
+					}
+				}
+			}
+		}
+	else if((document.getElementById) && (!document.all))
+		{
+		lay_name=document.getElementById("lay"+doko);
+		if(lay_name.style.visibility == 'visible')
+			{lay_name.style.visibility='hidden';
+			lay_name.style.display="none";
+			}
+		 else {lay_name.style.visibility='visible';
+				lay_name.style.display="block";
+			}
+		}
+	else if(document.all)
+		{
+		lay_name=document.all("lay"+doko);
+		if(lay_name.style.visibility == 'visible')
+			{lay_name.style.visibility='hidden';
+			 lay_name.style.display="none";
+			 if(navigator.appVersion.indexOf("MSIE 4.")!=-1)
+				lay_name.innerHTML=taihi[doko];
+			}
+		 else {lay_name.style.visibility='visible';
+		       lay_name.style.display="block";
+			taihi[doko]=lay_name.innerHTML;
+		       if(navigator.appVersion.indexOf("MSIE 4.")!=-1)
+				lay_name.innerHTML="<br>"+taihi[doko];
+			}
+		}
+	}
+
+	function CloseTree()
+		{
+		for(i=0; i<kazu; i++)
+			{
+			if(document.layers)
+				{
+				if(document.layers["lay"+i].visibility == 'show')
+					{
+					tate=document.layers["lay"+i].clip.height;
+					for(j=i+1; j<kazu; j++)
+						document.layers["title"+j].moveBy(0,-tate);
+					}
+				document.layers["lay"+i].visibility='hidden';
+				}
+			else if((document.getElementById) && (!document.all))
+				{
+				document.getElementById("lay"+i).style.visibility='hidden';
+				document.getElementById("lay"+i).style.display="none";
+				}
+			else if(document.all)
+				{
+				document.all("lay"+i).style.visibility='hidden';
+				document.all("lay"+i).style.display="none";
+				}
+			}
+		}
+
+	if(document.layers)
+		{document.write('<style type="text/css">span{position:absolute;visibility:hidden;}</style>');}
+	else if((document.getElementById) && (!document.all))
+		{document.write('<style type="text/css">span{position:relative;display:none;}</style>');}
+	else if(document.all)
+		{document.write('<style type="text/css">span{position:relative;display:none;}</style>');}
+
+//-->
+</script>
+
+</head>
+
+<body>
+
+<a href="javascript:CloseTree();">閉じる</a>
+<br>
+<form><input type="button" value="閉じる" onClick="CloseTree();"></form>
+
+<div id="title0" style="position:relative;visibility:visible;">
+<layer name="title0">
+<a href="JavaScript:hyouji(0);">▼</a>Front
+</layer></div>
+<span id="lay0">
+<tt>├</tt><a href="おみくじ.htm">JavaScript</a><br>
+<tt>├</tt><a href="クイズ.htm">JavaScript FAQ</a><br>
+<tt>├</tt><a href="グラフの動的表示.htm">JavaScript</a><br>
+</span>
+
+<div id="title1" style="position:relative;visibility:visible;">
+<layer name="title1">
+<a href="JavaScript:hyouji(1);">▼</a>Contents
+</layer></div>
+<span id="lay1">
+<tt>├</tt><a href="ドロップダウンから指定 URL に移動.htm">JavaScript</a><br>
+<tt>├</tt><a href="ボタンを一度だけ有効にする.htm">Library(Link)</a><br>
+<tt>├</tt><a href="ロード中の文字表示.htm">JavaScript</a><br>
+<tt>├</tt><a href="画像サイズ表示.htm">Library(Link)2</a><br>
+</span>
+
+<div id="title2" style="position:relative;visibility:visible;">
+<layer name="title2">
+<a href="JavaScript:hyouji(2);">▼</a>Link
+</layer></div>
+<span id="lay2">
+<tt>├</tt><a href="簡易時計js.htm">Link</a><br>
+<tt>├</tt><a href="検索サイトを選択して検索.htm">Link2</a><br>
+</span>
+
+<div id="title3" style="position:relative;visibility:visible;">
+<layer name="title3">
+<a href="JavaScript:hyouji(3);">▼</a>Contents2
+</layer></div>
+<span id="lay3">
+<tt>├</tt><a href="指定ページへ進む.htm">JavaScript</a><br>
+<tt>├</tt><a href="指定ページを読み込む.htm">Library(Link)</a><br>
+<tt>├</tt><a href="時刻表示js.htm">JavaScript</a><br>
+<tt>├</tt><a href="見出し表示.htm">Library(Link)2</a><br>
+</span>
+</body></html>
