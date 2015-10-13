@@ -10,21 +10,21 @@
 
 	//クッキーの保存日数を指定する
 	//3なら日間、5なら5日間
-	kikan=3;
+	var kikan=3;
 
 	//表示する文章の前半
-	mae="貴方は、";
+	var mae="貴方は、";
 
 	//表示する文章の後半
-	usiro="回このページを訪れました。";
+	var usiro="回このページを訪れました。";
 
 	//クッキーで使用する名称部分
-	my_name="co2";
+	var my_name="co2";
 
 
-	my_datas=new Array();
-	my_datas2=new Array();
-	my_name="WEST_MiRaCookie"+my_name;
+	var my_datas=new Array();
+	var my_datas2=new Array();
+	var my_name="WEST_MiRaCookie"+my_name;
 	function DataRead()
 		{
 		if(document.cookie.length > 0 && document.cookie.indexOf(my_name) != -1)
@@ -40,14 +40,14 @@
 
 	function DataWrite(datas)
 		{
-		jikann=new Date();
-		ima=new Date(jikann.getTime()+(kikan*24*60*60*1000));
-		datas=escape(datas);
+		var jikann=new Date();
+		var ima=new Date(jikann.getTime()+(kikan*24*60*60*1000));
+		var datas=escape(datas);
 		document.cookie=my_name+"="+datas+";expires="+ima.toGMTString();
 		return;
 		}
 
-	CookieData=DataRead();
+	var CookieData=DataRead();
 	if(CookieData > 0)CookieData++;
 	else CookieData=1;
 	DataWrite(CookieData);
